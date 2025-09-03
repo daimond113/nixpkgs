@@ -29,12 +29,6 @@ qtModule {
   ];
 
   patches = [
-    # invalidates qml caches created from nix applications at different
-    # store paths and disallows saving caches of bare qml files in the store.
-    (replaceVars ./invalidate-caches-from-mismatched-store-paths.patch {
-      nixStore = builtins.storeDir;
-      nixStoreLength = builtins.toString ((builtins.stringLength builtins.storeDir) + 1); # trailing /
-    })
     # add version specific QML import path
     ./use-versioned-import-path.patch
   ];
